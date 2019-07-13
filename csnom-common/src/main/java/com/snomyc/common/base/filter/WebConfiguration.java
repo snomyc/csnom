@@ -24,7 +24,7 @@ public class WebConfiguration {
     public RemoteIpFilter remoteIpFilter() {
         return new RemoteIpFilter();
     }
-    
+
     @Bean
     public FilterRegistrationBean testFilterRegistration() {
 
@@ -36,9 +36,9 @@ public class WebConfiguration {
         registration.setOrder(1);
         return registration;
     }
-    
+
     public class WebContextFilter implements Filter {
-    	
+
     	@Override
         public void init(FilterConfig filterConfig) throws ServletException {
         }
@@ -62,9 +62,9 @@ public class WebConfiguration {
 
         @Override
         public void destroy() {
-        	
+
         }
-    	
+
     }
 }
 

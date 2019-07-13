@@ -1,4 +1,4 @@
-package com.snomyc.common.base.swagger;
+package com.snomyc.service.swagger;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,6 +8,7 @@ import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
+
 /**
  * @author yangcan
  * 类描述:用@Configuration注解该类，等价于XML中配置beans；用@Bean标注方法等价于XML中配置bean。
@@ -31,13 +32,13 @@ public class SwaggerConfig {
 	
 	private ApiInfo apiInfo() {
         return new ApiInfo(
-                "小程序APP接口文档",
-                "小程序 Restful接口文档",
+                "前端APP接口文档",
+                "前端Restful接口文档",
                 "1.0",
                 "",
-                new Contact("指点教育", "https://www.sharingschool.com/", "service@sharingschool.com"),
+                new Contact("耳可火山", "https://www.sharingschool.com/", "snomyc@qq.com"),
                 "LICENSE-2.0",
-                "http://www.apache.org/licenses/LICENSE-2.0");
+                "https://github.com/snomyc/csnom");
     }
 
 }
