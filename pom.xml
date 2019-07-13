@@ -11,6 +11,9 @@
     <name>csnom</name>
     <description>csnom平台架构</description>
     <modules>
+        
+        
+        
         <module>snomyc-common</module>
         <module>snomyc-service</module>
         <module>snomyc-api</module>
