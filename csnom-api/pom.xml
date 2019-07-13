@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>csnom-api</artifactId>
     <packaging>war</packaging>
-    <name>csnom-api Maven Webapp</name>
+    <name>csnom-api</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

@@ -210,6 +210,7 @@
     <modules>
         <module>csnom-common</module>
         <module>csnom-api</module>
+        <module>csnom-service</module>
     </modules>
 
     <!-- Package as an executable jar -->
