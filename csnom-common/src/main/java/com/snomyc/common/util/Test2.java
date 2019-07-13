@@ -2,6 +2,8 @@ package com.snomyc.common.util;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -47,6 +49,9 @@ public class Test2 {
       
       String url = "http://localhost:8080/api/amazon/exportUrl";
       System.out.println(url.substring(0, url.indexOf("/",7)));
-		
+
+      String apiUrl = "/api/common/lotteryDraw";
+      boolean flag = !StringUtils.startsWith(apiUrl, "/api/");
+      System.out.print(flag);
 	}
 }
