@@ -1,5 +1,6 @@
 package com.snomyc.service.sys.serviceimpl;
 
+import com.alibaba.dubbo.config.annotation.Service;
 import com.snomyc.common.base.service.BaseServiceImpl;
 import com.snomyc.service.sys.UserService;
 import com.snomyc.service.sys.bean.User;
@@ -8,14 +9,13 @@ import com.snomyc.service.sys.dao.UserQueryDao;
 import com.snomyc.service.sys.request.UserEditRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.PagingAndSortingRepository;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
 
-@Service
+@Service(version="1.0")
 public class UserServiceImpl extends BaseServiceImpl<User, String> implements UserService {
 
     @Autowired

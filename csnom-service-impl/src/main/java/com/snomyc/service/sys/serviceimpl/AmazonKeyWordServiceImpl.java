@@ -1,5 +1,6 @@
 package com.snomyc.service.sys.serviceimpl;
 
+import com.alibaba.dubbo.config.annotation.Service;
 import com.alibaba.fastjson.JSONArray;
 import com.snomyc.common.base.service.BaseServiceImpl;
 import com.snomyc.common.util.HttpClientHelper;
@@ -11,14 +12,13 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.PagingAndSortingRepository;
-import org.springframework.stereotype.Service;
 
 import java.net.URLEncoder;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
-@Service
+@Service(version="1.0")
 public class AmazonKeyWordServiceImpl extends BaseServiceImpl<AmazonKeyWord, String> implements AmazonKeyWordService {
 
     @Autowired

@@ -1,5 +1,6 @@
 package com.snomyc.service.api;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.snomyc.common.base.domain.ResponseConstant;
 import com.snomyc.common.base.domain.ResponseEntity;
 import com.snomyc.common.base.redis.JedisPoolUtil;
@@ -26,13 +27,13 @@ import java.util.Map;
 @RequestMapping("/api/user")
 public class UserApiController {
 	private Logger logger = LoggerFactory.getLogger("AmazonSystem");
-	
-	@Autowired
+
+	@Reference(version = "1.0" ,timeout = 15000)
 	private UserService userService;
-	
+
 	@Autowired
 	private JedisPool jedisPool;
-	
+
 	@Autowired
 	private JedisPoolUtil jedisPoolUtil;
 
@@ -69,7 +70,7 @@ public class UserApiController {
 		return responseEntity;
 	}
 
-	@ApiOperation(value = "添加用户",httpMethod = "POST")  
+	@ApiOperation(value = "添加用户",httpMethod = "POST")
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public ResponseEntity add(@RequestBody UserAddRequest request) {
 		ResponseEntity responseEntity = new ResponseEntity();
@@ -86,7 +87,7 @@ public class UserApiController {
 		return responseEntity;
 	}
 
-	@ApiOperation(value = "编辑用户",httpMethod = "POST")  
+	@ApiOperation(value = "编辑用户",httpMethod = "POST")
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	public ResponseEntity edit(@RequestBody UserEditRequest request) {
 		ResponseEntity responseEntity = new ResponseEntity();
@@ -100,7 +101,7 @@ public class UserApiController {
 		return responseEntity;
 	}
 
-	@ApiOperation(value = "删除用户",httpMethod = "POST")  
+	@ApiOperation(value = "删除用户",httpMethod = "POST")
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public ResponseEntity delete(@ApiParam(required = true, name = "id", value = "用户id") @RequestParam(name = "id",required = true) String id) {
 		ResponseEntity responseEntity = new ResponseEntity();
@@ -112,8 +113,8 @@ public class UserApiController {
 		}
 		return responseEntity;
 	}
-	
-	@ApiOperation(value = "测试缓存",httpMethod = "POST")  
+
+	@ApiOperation(value = "测试缓存",httpMethod = "POST")
 	@RequestMapping(value = "/redisKey", method = RequestMethod.POST)
 	public ResponseEntity redisKey(@ApiParam(required = true, name = "key", value = "reids key") @RequestParam(name = "key",required = true) String key) {
 		ResponseEntity responseEntity = new ResponseEntity();
@@ -128,5 +129,5 @@ public class UserApiController {
 		}
 		return responseEntity;
 	}
-	
+
 }

@@ -4,12 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.snomyc.common.base.domain.ResponseConstant;
 import com.snomyc.common.base.domain.ResponseEntity;
 import com.snomyc.common.util.face.FaceReq;
-import com.snomyc.sys.LotterDrawService;
-import com.snomyc.sys.bean.LotterDraw;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.snomyc.service.sys.LotterDrawService;
+import com.snomyc.service.sys.bean.LotterDraw;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,7 +23,7 @@ import io.swagger.annotations.ApiParam;
 @RequestMapping("/api/common")
 public class CommonApiController {
 	
-	@Autowired
+	@Reference(version = "1.0" ,timeout = 15000)
 	private LotterDrawService lotterDrawService;
 
 	@ApiOperation(value = "识别图片信息",httpMethod = "POST")  

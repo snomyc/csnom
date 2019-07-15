@@ -7,7 +7,7 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"com.snomyc"})
 @EnableSwagger2 //加载swagger
 @EnableScheduling //定时任务
 public class CsnomAppApi extends SpringBootServletInitializer {
