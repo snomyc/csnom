@@ -1,10 +1,6 @@
-package com.snomyc.service.sys.impl;
+package com.snomyc.service.sys.serviceimpl;
 
-import java.net.URLEncoder;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-
+import com.alibaba.fastjson.JSONArray;
 import com.snomyc.common.base.service.BaseServiceImpl;
 import com.snomyc.common.util.HttpClientHelper;
 import com.snomyc.service.sys.AmazonKeyWordService;
@@ -17,7 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Service;
 
-import com.alibaba.fastjson.JSONArray;
+import java.net.URLEncoder;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
 @Service
 public class AmazonKeyWordServiceImpl extends BaseServiceImpl<AmazonKeyWord, String> implements AmazonKeyWordService {

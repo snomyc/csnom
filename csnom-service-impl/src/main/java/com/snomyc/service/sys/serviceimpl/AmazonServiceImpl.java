@@ -1,4 +1,4 @@
-package com.snomyc.service.sys.impl;
+package com.snomyc.service.sys.serviceimpl;
 
 import com.snomyc.service.sys.AmazonService;
 import org.springframework.stereotype.Service;

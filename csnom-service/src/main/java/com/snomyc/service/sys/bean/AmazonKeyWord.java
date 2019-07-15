@@ -2,10 +2,9 @@ package com.snomyc.service.sys.bean;
 
 import com.snomyc.common.base.domain.BaseEntity;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import java.util.Date;
 
 /**
  * @author snomyc

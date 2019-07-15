@@ -1,9 +1,10 @@
 package com.snomyc.service.sys.dao;
 
-import java.util.List;
 import com.snomyc.service.sys.bean.AmazonKeyWord;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface AmazonKeyWordDao extends JpaRepository<AmazonKeyWord, String> {

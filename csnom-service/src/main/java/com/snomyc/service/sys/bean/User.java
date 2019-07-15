@@ -1,8 +1,9 @@
 package com.snomyc.service.sys.bean;
 
+import com.snomyc.common.base.domain.BaseEntity;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import com.snomyc.common.base.domain.BaseEntity;
 
 @Entity
 public class User extends BaseEntity{

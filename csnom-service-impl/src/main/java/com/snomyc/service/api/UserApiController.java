@@ -1,9 +1,5 @@
 package com.snomyc.service.api;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
 import com.snomyc.common.base.domain.ResponseConstant;
 import com.snomyc.common.base.domain.ResponseEntity;
 import com.snomyc.common.base.redis.JedisPoolUtil;
@@ -11,20 +7,20 @@ import com.snomyc.service.sys.UserService;
 import com.snomyc.service.sys.bean.User;
 import com.snomyc.service.sys.request.UserAddRequest;
 import com.snomyc.service.sys.request.UserEditRequest;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 @Api(value = "用户接口", tags = "用户接口")
 @RestController
 @RequestMapping("/api/user")
