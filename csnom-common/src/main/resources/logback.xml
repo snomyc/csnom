@@ -1,56 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 
-  <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
- 	<encoder>
-         <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
-    </encoder>
-  </appender>
-  
-  <appender name="amazon" class="ch.qos.logback.core.rolling.RollingFileAppender">
-    <File>log/amazon/amazon.log</File>
-    <!-- <append>：如果是 true，日志被追加到文件结尾，如果是 false，清空现存文件，默认是true。 -->
-    <append>true</append>
-    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-      <level>error</level>
-    </filter>
-    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-      <fileNamePattern>log/amazon/amazon.log.%d{yyyy-MM-dd}.log</fileNamePattern>
-      <!--日志文件保留天数-->
-	  <MaxHistory>7</MaxHistory>
-    </rollingPolicy>
-    <encoder>
-          <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36}[%line] - %msg%n</pattern>
-    </encoder>
-  </appender>
-  
-   <appender name="amazonmq" class="ch.qos.logback.core.rolling.RollingFileAppender">
-    <File>log/amazonmq/amazonmq.log</File>
-    <!-- <append>：如果是 true，日志被追加到文件结尾，如果是 false，清空现存文件，默认是true。 -->
-    <append>true</append>
-    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-      <level>error</level>
-    </filter>
-    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-      <fileNamePattern>log/amazonmq/amazonmq.log.%d{yyyy-MM-dd}.log</fileNamePattern>
-      <!--日志文件保留天数-->
-	  <MaxHistory>7</MaxHistory>
-    </rollingPolicy>
-    <encoder>
-          <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36}[%line] - %msg%n</pattern>
-    </encoder>
-  </appender>
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="system-error" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>/www/log/system/system-error.log</File>
+        <!-- <append>：如果是 true，日志被追加到文件结尾，如果是 false，清空现存文件，默认是true。 -->
+        <append>true</append>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>error</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/www/log/system/system-error.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!--日志文件保留天数-->
+            <MaxHistory>7</MaxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36}[%line] - %msg%n</pattern>
+        </encoder>
+    </appender>
 
 
+    <appender name="amazon" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>/www/log/amazon/amazon.log</File>
+        <!-- <append>：如果是 true，日志被追加到文件结尾，如果是 false，清空现存文件，默认是true。 -->
+        <append>true</append>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>error</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/www/log/amazon/amazon.log.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!--日志文件保留天数-->
+            <MaxHistory>7</MaxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36}[%line] - %msg%n</pattern>
+        </encoder>
+    </appender>
 
-  
-  <root level="info">
-    <appender-ref ref="console"/>
-  </root>
-  <logger name="AmazonSystem" level="error">
-    <appender-ref ref="amazon"/>
-  </logger>
-  <logger name="AmazonRabbitmq" level="error">
-    <appender-ref ref="amazonmq"/>
-  </logger>
+    <appender name="amazonmq" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>/www/log/amazonmq/amazonmq.log</File>
+        <!-- <append>：如果是 true，日志被追加到文件结尾，如果是 false，清空现存文件，默认是true。 -->
+        <append>true</append>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>error</level>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/www/log/amazonmq/amazonmq.log.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!--日志文件保留天数-->
+            <MaxHistory>7</MaxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36}[%line] - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+
+    <root level="info">
+        <appender-ref ref="console"/>
+        <appender-ref ref="amazon"/>
+    </root>
+    <logger name="AmazonSystem" level="error">
+        <appender-ref ref="amazon"/>
+    </logger>
+    <logger name="AmazonRabbitmq" level="error">
+        <appender-ref ref="amazonmq"/>
+    </logger>
 </configuration>
