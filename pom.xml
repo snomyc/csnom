@@ -60,7 +60,7 @@
         <dependency>
             <groupId>com.alibaba.boot</groupId>
             <artifactId>dubbo-spring-boot-starter</artifactId>
-            <version>0.1.2.RELEASE</version>
+            <version>0.1.1</version>
         </dependency>
 
         <!--zookeeper 的客户端-->
