@@ -1,11 +1,11 @@
-package com.snomyc.common.base.domain;
+package com.snomyc.bean.base;
+
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-
-import org.hibernate.annotations.GenericGenerator;
 
 /**
  * 

@@ -1,7 +1,7 @@
 package com.snomyc.service.sys.request;
 
 
-import com.snomyc.common.base.domain.BaseRequest;
+import com.snomyc.bean.base.BaseRequest;
 import io.swagger.annotations.ApiModelProperty;
 
 public class UserAddRequest extends BaseRequest {

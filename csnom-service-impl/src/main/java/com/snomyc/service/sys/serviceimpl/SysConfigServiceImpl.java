@@ -1,9 +1,9 @@
 package com.snomyc.service.sys.serviceimpl;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.snomyc.bean.SysConfig;
 import com.snomyc.common.base.service.BaseServiceImpl;
 import com.snomyc.service.sys.SysConfigService;
-import com.snomyc.service.sys.bean.SysConfig;
 import com.snomyc.service.sys.dao.SysConfigDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.PagingAndSortingRepository;

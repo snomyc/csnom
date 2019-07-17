@@ -2,11 +2,11 @@ package com.snomyc.service.sys.serviceimpl;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.alibaba.fastjson.JSONArray;
+import com.snomyc.bean.AmazonKeyWord;
 import com.snomyc.common.base.service.BaseServiceImpl;
 import com.snomyc.common.util.HttpClientHelper;
 import com.snomyc.service.sys.AmazonKeyWordService;
 import com.snomyc.service.sys.SysConfigService;
-import com.snomyc.service.sys.bean.AmazonKeyWord;
 import com.snomyc.service.sys.dao.AmazonKeyWordDao;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;

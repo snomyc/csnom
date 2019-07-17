@@ -1,6 +1,6 @@
-package com.snomyc.service.sys.bean;
+package com.snomyc.bean;
 
-import com.snomyc.common.base.domain.BaseEntity;
+import com.snomyc.bean.base.BaseEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

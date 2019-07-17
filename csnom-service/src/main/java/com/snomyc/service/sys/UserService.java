@@ -1,7 +1,7 @@
 package com.snomyc.service.sys;
 
+import com.snomyc.bean.User;
 import com.snomyc.common.base.service.BaseService;
-import com.snomyc.service.sys.bean.User;
 import com.snomyc.service.sys.request.UserEditRequest;
 
 import java.util.List;

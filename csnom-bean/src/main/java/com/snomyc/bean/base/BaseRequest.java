@@ -1,11 +1,12 @@
-package com.snomyc.common.base.domain;
-
-import java.io.Serializable;
-import java.util.Date;
+package com.snomyc.bean.base;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializeConfig;
 import com.alibaba.fastjson.serializer.SimpleDateFormatSerializer;
+
+import java.io.Serializable;
+import java.util.Date;
+
 /**
  *
  */

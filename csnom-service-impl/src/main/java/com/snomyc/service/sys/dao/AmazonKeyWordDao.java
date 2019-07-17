@@ -1,6 +1,6 @@
 package com.snomyc.service.sys.dao;
 
-import com.snomyc.service.sys.bean.AmazonKeyWord;
+import com.snomyc.bean.AmazonKeyWord;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

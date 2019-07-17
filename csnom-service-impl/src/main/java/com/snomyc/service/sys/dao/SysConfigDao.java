@@ -1,6 +1,6 @@
 package com.snomyc.service.sys.dao;
 
-import com.snomyc.service.sys.bean.SysConfig;
+import com.snomyc.bean.SysConfig;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

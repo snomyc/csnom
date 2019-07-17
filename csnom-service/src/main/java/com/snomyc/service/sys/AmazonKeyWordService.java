@@ -1,7 +1,7 @@
 package com.snomyc.service.sys;
 
+import com.snomyc.bean.AmazonKeyWord;
 import com.snomyc.common.base.service.BaseService;
-import com.snomyc.service.sys.bean.AmazonKeyWord;
 
 import java.util.List;
 

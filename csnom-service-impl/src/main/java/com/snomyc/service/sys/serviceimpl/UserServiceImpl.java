@@ -1,9 +1,9 @@
 package com.snomyc.service.sys.serviceimpl;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.snomyc.bean.User;
 import com.snomyc.common.base.service.BaseServiceImpl;
 import com.snomyc.service.sys.UserService;
-import com.snomyc.service.sys.bean.User;
 import com.snomyc.service.sys.dao.UserDao;
 import com.snomyc.service.sys.dao.UserQueryDao;
 import com.snomyc.service.sys.request.UserEditRequest;

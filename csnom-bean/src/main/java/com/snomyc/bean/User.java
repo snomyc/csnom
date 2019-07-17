@@ -1,12 +1,12 @@
-package com.snomyc.service.sys.bean;
+package com.snomyc.bean;
 
-import com.snomyc.common.base.domain.BaseEntity;
+import com.snomyc.bean.base.BaseEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @Entity
-public class User extends BaseEntity{
+public class User extends BaseEntity {
     
 	private static final long serialVersionUID = 1L;
 	

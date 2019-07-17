@@ -1,11 +1,11 @@
-package com.snomyc.common.base.domain;
-
-import java.io.Serializable;
+package com.snomyc.bean.base;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+
+import java.io.Serializable;
 
 public abstract class PersistentEntity implements Serializable {
 

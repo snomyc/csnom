@@ -1,6 +1,6 @@
 package com.snomyc.service.sys.dao;
 
-import com.snomyc.service.sys.bean.LotterDraw;
+import com.snomyc.bean.LotterDraw;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

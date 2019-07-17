@@ -229,6 +229,11 @@
             <!--子版本依赖-->
             <dependency>
                 <groupId>com.snomyc</groupId>
+                <artifactId>csnom-bean</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.snomyc</groupId>
                 <artifactId>csnom-common</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
@@ -242,14 +247,29 @@
                 <artifactId>csnom-service-impl</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
+            <!--消息推送服务，支付服务-->
+            <dependency>
+                <groupId>com.snomyc</groupId>
+                <artifactId>csnom-inner-service</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <!--消息推送服务提供者，支付服务提供者，定时任务-->
+            <dependency>
+                <groupId>com.snomyc</groupId>
+                <artifactId>csnom-inner-service-impl</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
     <modules>
+        <module>csnom-bean</module>
         <module>csnom-common</module>
         <module>csnom-api</module>
         <module>csnom-service</module>
         <module>csnom-service-impl</module>
+        <module>csnom-inner-service</module>
+        <module>csnom-inner-service-impl</module>
     </modules>
 
     <!-- Package as an executable jar -->
