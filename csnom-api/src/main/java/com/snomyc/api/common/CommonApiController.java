@@ -6,10 +6,12 @@ import java.util.Map;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.snomyc.bean.LotterDraw;
+import com.snomyc.bean.User;
 import com.snomyc.common.base.domain.ResponseConstant;
 import com.snomyc.common.base.domain.ResponseEntity;
 import com.snomyc.common.util.face.FaceReq;
 import com.snomyc.service.inner.MQProduceService;
+import com.snomyc.service.mybatis.sys.SysMapperService;
 import com.snomyc.service.sys.LotterDrawService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,6 +31,9 @@ public class CommonApiController {
 
 	@Reference(version = "1.0" ,timeout = 15000)
 	private MQProduceService mqService;
+
+	@Reference(version = "1.0" ,timeout = 15000)
+	private SysMapperService sysMapperService;
 
 	@ApiOperation(value = "识别图片信息",httpMethod = "POST")  
 	@RequestMapping(value = "/discernPicture", method = RequestMethod.POST)
@@ -75,6 +80,51 @@ public class CommonApiController {
 		try {
 			mqService.sendMessage();
 			responseEntity.success("成功");
+		} catch (Exception e) {
+			responseEntity.failure(ResponseConstant.CODE_500, "接口调用异常");
+		}
+		return responseEntity;
+	}
+
+	@ApiOperation(value = "测试接入mybatis",httpMethod = "POST")
+	@RequestMapping(value = "/testMybatis", method = RequestMethod.POST)
+	public ResponseEntity testMybatis() {
+		ResponseEntity responseEntity = new ResponseEntity();
+		try {
+			List<User> userList = sysMapperService.findAllUsers();
+			responseEntity.success(userList,"成功");
+		} catch (Exception e) {
+			responseEntity.failure(ResponseConstant.CODE_500, "接口调用异常");
+		}
+		return responseEntity;
+	}
+
+	@ApiOperation(value = "查询用户信息",httpMethod = "POST")
+	@RequestMapping(value = "/testMybatisFindUser", method = RequestMethod.POST)
+	public ResponseEntity testMybatisFindUser(@ApiParam(required = true, name = "userName", value = "用户名") @RequestParam(name = "userName",required = true) String userName) {
+		ResponseEntity responseEntity = new ResponseEntity();
+		try {
+			Map<String,Object> map = sysMapperService.findByUserName(userName);
+			responseEntity.success(map,"成功");
+		} catch (Exception e) {
+			responseEntity.failure(ResponseConstant.CODE_500, "接口调用异常");
+		}
+		return responseEntity;
+	}
+
+	@ApiOperation(value = "查询用户信息2",httpMethod = "POST")
+	@RequestMapping(value = "/testMybatisFindUser2", method = RequestMethod.POST)
+	public ResponseEntity testMybatisFindUser(@RequestParam(name = "userName",required = false) String userName,
+											  @RequestParam(name = "password",required = false) String password,
+											  @RequestParam(name = "age",required = false) Integer age) {
+		ResponseEntity responseEntity = new ResponseEntity();
+		try {
+			Map<String,Object> paramsMap = new HashMap<>();
+			paramsMap.put("userName",userName);
+			paramsMap.put("password",password);
+			paramsMap.put("age",age);
+			List<Map<String,Object>> mapList = sysMapperService.findUsersBySelective(paramsMap);
+			responseEntity.success(mapList,"成功");
 		} catch (Exception e) {
 			responseEntity.failure(ResponseConstant.CODE_500, "接口调用异常");
 		}

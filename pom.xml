@@ -259,6 +259,18 @@
                 <artifactId>csnom-inner-service-impl</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
+
+            <!--mybatis模块-->
+            <dependency>
+                <groupId>com.snomyc</groupId>
+                <artifactId>csnom-mybatis-service</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.snomyc</groupId>
+                <artifactId>csnom-mybatis-service-impl</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -270,6 +282,8 @@
         <module>csnom-service-impl</module>
         <module>csnom-inner-service</module>
         <module>csnom-inner-service-impl</module>
+        <module>csnom-mybatis-service</module>
+        <module>csnom-mybatis-service-impl</module>
     </modules>
 
     <!-- Package as an executable jar -->

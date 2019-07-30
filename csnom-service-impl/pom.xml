@@ -21,6 +21,11 @@
             <groupId>com.snomyc</groupId>
             <artifactId>csnom-service</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.snomyc</groupId>
+            <artifactId>csnom-mybatis-service-impl</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

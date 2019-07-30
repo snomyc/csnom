@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.snomyc.service.mybatis.sys.mapper.SysMapper" >
+    <resultMap id="BaseResultMap" type="com.snomyc.bean.User" >
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <result column="user_name" property="userName" jdbcType="VARCHAR" />
+        <result column="password" property="password" jdbcType="VARCHAR" />
+        <result column="age" property="age" jdbcType="INTEGER"/>
+    </resultMap>
+    
+    <sql id="Base_Column_List" >
+        id, user_name, password, age
+    </sql>
+
+    <select id="findAllUsers" resultMap="BaseResultMap"  >
+       SELECT 
+       <include refid="Base_Column_List" />
+	   FROM user
+    </select>
+
+    <!-- 新增条件查询 -->
+    <select id="findByUserName" parameterType="java.lang.String" resultType="hashMap">
+        select
+        <include refid="Base_Column_List" />
+        from user
+        where 1=1
+        <if test="userName != null and userName!=''">
+            and user_name = #{userName}
+        </if>
+        order by id desc
+    </select>
+
+    <!-- 新增条件查询 -->
+    <select id="findUsersBySelective" parameterType="hashMap" resultType="hashMap">
+        select
+        <include refid="Base_Column_List" />
+        from user
+        where 1=1
+        <if test="userName != null and userName!=''">
+            and user_name = #{userName}
+        </if>
+        <if test="password != null and password!=''">
+            and password = #{password}
+        </if>
+        <if test="age != null">
+            and age = #{age}
+        </if>
+        order by id desc
+    </select>
+</mapper>

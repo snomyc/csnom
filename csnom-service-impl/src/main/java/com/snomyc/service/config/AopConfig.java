@@ -11,7 +11,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
  */
 @Configuration
-@ComponentScan("com.snomyc.service") //扫描com.burning.aop所有的bean
+@ComponentScan("com.snomyc.service") //扫描com.snomyc.service所有的bean
 @EnableAspectJAutoProxy //开启Spring对aop的支持
 public class AopConfig {
 
