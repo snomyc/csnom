@@ -2,6 +2,8 @@ package com.snomyc.service.mybatis.sys.mapper;
 
 import com.snomyc.bean.User;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +14,6 @@ import java.util.Map;
 @Mapper
 public interface SysMapper {
     public List<User> findAllUsers();
-    public Map<String,Object> findByUserName(String userName);
+    public Map<String,Object> findByUserName(@Param(value="userName")String userName);
     public List<Map<String, Object>> findUsersBySelective(Map<String, Object> paramsMap);
 }
