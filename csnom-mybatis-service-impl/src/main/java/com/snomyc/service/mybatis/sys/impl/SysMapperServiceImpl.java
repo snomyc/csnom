@@ -29,4 +29,9 @@ public class SysMapperServiceImpl implements SysMapperService {
     public List<Map<String, Object>> findUsersBySelective(Map<String, Object> paramsMap) {
         return sysMapper.findUsersBySelective(paramsMap);
     }
+
+    @Override
+    public List<User> findAllByTempUserId(String userId) {
+        return sysMapper.findAllByTempUserId(userId);
+    }
 }

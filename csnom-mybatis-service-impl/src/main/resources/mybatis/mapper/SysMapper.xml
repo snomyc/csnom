@@ -47,4 +47,11 @@
         </if>
         order by id desc
     </select>
+
+    <!-- 新增条件查询 -->
+    <select id="findAllByTempUserId" parameterType="java.lang.String" resultType="hashMap">
+        select
+        <include refid="Base_Column_List" />
+        from `user_${userId}`
+    </select>
 </mapper>

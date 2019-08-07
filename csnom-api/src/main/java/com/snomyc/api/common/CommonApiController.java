@@ -13,6 +13,7 @@ import com.snomyc.common.util.face.FaceReq;
 import com.snomyc.service.inner.MQProduceService;
 import com.snomyc.service.mybatis.sys.SysMapperService;
 import com.snomyc.service.sys.LotterDrawService;
+import com.snomyc.service.sys.UserService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,7 +36,7 @@ public class CommonApiController {
 	@Reference(version = "1.0" ,timeout = 15000)
 	private SysMapperService sysMapperService;
 
-	@ApiOperation(value = "识别图片信息",httpMethod = "POST")  
+	@ApiOperation(value = "识别图片信息",httpMethod = "POST")
 	@RequestMapping(value = "/discernPicture", method = RequestMethod.POST)
 	public ResponseEntity discernPicture(@ApiParam(required = true, name = "fileName", value = "图片存放 服务器绝对地址") @RequestParam(name = "fileName",required = true) String fileName) {
 		ResponseEntity responseEntity = new ResponseEntity();
@@ -125,6 +126,19 @@ public class CommonApiController {
 			paramsMap.put("age",age);
 			List<Map<String,Object>> mapList = sysMapperService.findUsersBySelective(paramsMap);
 			responseEntity.success(mapList,"成功");
+		} catch (Exception e) {
+			responseEntity.failure(ResponseConstant.CODE_500, "接口调用异常");
+		}
+		return responseEntity;
+	}
+
+	@ApiOperation(value = "已用户为维度查询分表数据",httpMethod = "POST")
+	@RequestMapping(value = "/testfindAllByTempUserId", method = RequestMethod.POST)
+	public ResponseEntity testfindAllByTempUserId(@RequestParam(name = "userId",required = false) String userId) {
+		ResponseEntity responseEntity = new ResponseEntity();
+		try {
+			List<User> userList = sysMapperService.findAllByTempUserId(userId);
+			responseEntity.success(userList,"成功");
 		} catch (Exception e) {
 			responseEntity.failure(ResponseConstant.CODE_500, "接口调用异常");
 		}

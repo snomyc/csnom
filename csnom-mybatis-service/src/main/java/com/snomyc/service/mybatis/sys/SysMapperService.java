@@ -18,4 +18,6 @@ public interface SysMapperService {
     public Map<String,Object> findByUserName(String userName);
 
     public List<Map<String,Object>> findUsersBySelective(Map<String, Object> paramsMap);
+
+    public List<User> findAllByTempUserId(String userId);
 }
