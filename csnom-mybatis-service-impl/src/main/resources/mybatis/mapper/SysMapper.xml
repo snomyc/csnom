@@ -49,7 +49,7 @@
     </select>
 
     <!-- 新增条件查询 -->
-    <select id="findAllByTempUserId" parameterType="java.lang.String" resultType="hashMap">
+    <select id="findAllByTempUserId" parameterType="java.lang.String" resultType="com.snomyc.bean.User" >
         select
         <include refid="Base_Column_List" />
         from `user_${userId}`
