@@ -1,4 +1,4 @@
-package com.snomyc.common.util;//package com.snomyc.util;
+//package com.snomyc.common.util;
 //
 //import java.math.BigDecimal;
 //import java.text.DateFormat;
@@ -10,6 +10,9 @@ package com.snomyc.common.util;//package com.snomyc.util;
 //import java.util.Date;
 //import java.util.Iterator;
 //import java.util.List;
+//
+//import com.alibaba.fastjson.JSONArray;
+//import com.alibaba.fastjson.JSONObject;
 //import org.apache.log4j.Logger;
 //import org.jsoup.nodes.Document;
 //import org.jsoup.nodes.Element;
@@ -24,7 +27,7 @@ package com.snomyc.common.util;//package com.snomyc.util;
 //	private static String LOTTERY_ZC_URL = "http://www.lottery.gov.cn/api/lottery_kj_detail.jspx?";
 //
 //	private static String LOTTERY_ZC_ISSUE_URL = "http://www.lottery.gov.cn/api/get_typeBytermAndnews.jspx?";
-//	
+//
 //	/**
 //	 * 1---大乐透, 2 ---七星彩, 23 -- 广东11选5, 3---排列3 ,4---排列5, 7 --- 14场胜负彩,  9-----4场进球, 10---6场半全场
 //	 * 体彩网对应游戏编码 4---大乐透, 8 ---七星彩 ,5---排列3, 6---排列5, 9 --- 14场胜负彩,  11-----4场进球, 10---6场半全场
@@ -33,7 +36,7 @@ package com.snomyc.common.util;//package com.snomyc.util;
 //	 * @return
 //	 */
 //	public static GameIssue getGameNewest(Integer gameID,String issue) {
-//		
+//
 //		Integer tcGameID = null;
 //		if(gameID == 23) {
 //			return get11x5GameNewest(gameID, issue);
@@ -52,10 +55,10 @@ package com.snomyc.common.util;//package com.snomyc.util;
 //		}else{
 //			return null;
 //		}
-//		
+//
 //		Integer showIssue = Integer.valueOf(issue);
 //		issue = String.valueOf(showIssue+1);
-//		
+//
 //		StringBuffer sb = new StringBuffer();
 //		sb.append(LOTTERY_ZC_URL);
 //		sb.append("_ltype=").append(tcGameID);
@@ -75,7 +78,7 @@ package com.snomyc.common.util;//package com.snomyc.util;
 //				return null;
 //			}
 //		}
-//		
+//
 //        long timeMillis = lottery.getJSONObject("openTime").getLong("time");
 //		Calendar calendar = Calendar.getInstance();
 //		calendar.setTimeInMillis(timeMillis);
@@ -106,7 +109,7 @@ package com.snomyc.common.util;//package com.snomyc.util;
 //		gameIssue.setIsLastIssue(0);
 //		return gameIssue;
 //	}
-//	
+//
 //	/**
 //	 * 通过游戏ID和销售期号获得该销售期号的详细信息
 //	 * @param gameID
@@ -132,7 +135,7 @@ package com.snomyc.common.util;//package com.snomyc.util;
 //		}else{
 //			return null;
 //		}
-//		
+//
 //		StringBuffer sb = new StringBuffer();
 //		sb.append(LOTTERY_ZC_URL);
 //		sb.append("_ltype=").append(tcGameID);
@@ -141,11 +144,11 @@ package com.snomyc.common.util;//package com.snomyc.util;
 //		JSONArray array = JSONArray.fromObject(json);
 //		JSONObject root = array.getJSONObject(0);
 //		JSONObject lottery = root.getJSONObject("lottery");
-//		
+//
 //		if(lottery.isNullObject()) {
 //			return null;
 //		}
-//		
+//
 //        long timeMillis = lottery.getJSONObject("openTime").getLong("time");
 //		Calendar calendar = Calendar.getInstance();
 //		calendar.setTimeInMillis(timeMillis);
@@ -176,8 +179,8 @@ package com.snomyc.common.util;//package com.snomyc.util;
 //		gameIssue.setIsLastIssue(0);
 //		return gameIssue;
 //	}
-//	
-//	
+//
+//
 //	/**
 //	 * 自造11选5新期算法
 //	 * @param gameID
@@ -193,14 +196,14 @@ package com.snomyc.common.util;//package com.snomyc.util;
 //			DateFormat format = new SimpleDateFormat("yyyyMMdd");
 //			Date time = format.parse(timeStr);
 //			int num = Integer.parseInt(numStr);
-//			
+//
 //			//当前期的截止销售时间则是下一期的起始销售时间
 //			String startSaleTimeStr = DateFormatHelper.parseDate(time, "yyyy-MM-dd ") + Game11x5Enum.valueOf("T"+num).getEndSaleTime();
 //			if(num == 84) {
 //				//如果当前期数是84期说明是当天的最后一期,那么下一期就是第二天的第一期
 //				num = 1;
 //				time.setDate(time.getDate()+1);
-//				
+//
 //				//如果第二天是农历腊月三十 那么往后面追加7天，因为7天年假不开盘
 //				Calendar today = Calendar.getInstance();
 //				today.setTime(time);
@@ -211,10 +214,10 @@ package com.snomyc.common.util;//package com.snomyc.util;
 //			}else {
 //				num += 1;
 //			}
-//			
+//
 //			//获取当前期销售截止时间 加上年月日
 //			String endSaleTimeStr = DateFormatHelper.parseDate(time, "yyyy-MM-dd ") + Game11x5Enum.valueOf("T"+num).getEndSaleTime();
-//			
+//
 //			//期号
 //			if(num < 10) {
 //				numStr = "0"+num;
@@ -222,11 +225,11 @@ package com.snomyc.common.util;//package com.snomyc.util;
 //				numStr = String.valueOf(num);
 //			}
 //			String nextIssue =  DateFormatHelper.parseDate(time, "yyMMdd")+numStr;
-//			
+//
 //			System.out.println("起始销售时间:"+startSaleTimeStr);
 //			System.out.println("截止销售时间:"+endSaleTimeStr);
 //			System.out.println(nextIssue);
-//			
+//
 //			//开始销售时间
 //	        Date startSaleTime = DateFormatHelper.formatDate(startSaleTimeStr, DateFormatHelper.YYYY_MM_DD_HH_MM_SS);
 //	        //结束销售时间
@@ -255,7 +258,7 @@ package com.snomyc.common.util;//package com.snomyc.util;
 //		}
 //		return null;
 //	}
-//	
+//
 //	/**
 //	 * 自造11选5历史期算法
 //	 * @param gameID
@@ -263,7 +266,7 @@ package com.snomyc.common.util;//package com.snomyc.util;
 //	 * @return
 //	 */
 //	public static GameIssue get11x5GameIssueByShowIssue(Integer gameID,String showIssue) {
-//		
+//
 //		try {
 //			//时间
 //			String timeStr = "20"+showIssue.substring(0, showIssue.length()-2);
@@ -272,12 +275,12 @@ package com.snomyc.common.util;//package com.snomyc.util;
 //			DateFormat format = new SimpleDateFormat("yyyyMMdd");
 //			Date time = format.parse(timeStr);
 //			int num = Integer.parseInt(numStr);
-//			
+//
 //			//当前期的起始销售时间 加上年月日
 //			String startSaleTimeStr = DateFormatHelper.parseDate(time, "yyyy-MM-dd ") + Game11x5Enum.valueOf("T"+num).getStartSaleTime();
 //			//获取当前期销售截止时间 加上年月日
 //			String endSaleTimeStr = DateFormatHelper.parseDate(time, "yyyy-MM-dd ") + Game11x5Enum.valueOf("T"+num).getEndSaleTime();
-//			
+//
 //			System.out.println("起始销售时间:"+startSaleTimeStr);
 //			System.out.println("截止销售时间:"+endSaleTimeStr);
 //			System.out.println(showIssue);
@@ -309,12 +312,12 @@ package com.snomyc.common.util;//package com.snomyc.util;
 //		}
 //		return null;
 //	}
-//	
+//
 //
 //	/***
 //	 * 游戏编号 1---大乐透, 2 ---七星彩 , 4---排列5, 7 --- 14场胜负彩,  9-----4场进球, 10---6场半全场
 //	 * 体彩网对应游戏编码 4---大乐透, 8 ---七星彩 ,5---排列3, 6---排列5, 9 --- 14场胜负彩,  11-----4场进球, 10---6场半全场
-//	 * 
+//	 *
 //	 * @param gameID
 //	 * @param issue
 //	 * @return
@@ -348,7 +351,7 @@ package com.snomyc.common.util;//package com.snomyc.util;
 //
 //	/**
 //	 * 根据游戏编号，和期号获取（爬取）中间期号的list集合
-//	 * 
+//	 *
 //	 * @param gameID
 //	 *            游戏编号 1---大乐透, 2 ---七星彩 , 4---排列5, 7 --- 14场胜负彩,  9-----4场进球, 10---6场半全场
 //	 *            体彩网对应游戏编码 4---大乐透, 8 ---七星彩 ,5---排列3, 6---排列5, 9 --- 14场胜负彩,  11-----4场进球, 10---6场半全场
@@ -407,7 +410,7 @@ package com.snomyc.common.util;//package com.snomyc.util;
 //			return null;
 //		}
 //	}
-//	
+//
 //	/**
 //	 * 获取游戏开奖公告信息 (大乐透，七星彩，排列5)
 //	 * 游戏编号 1---大乐透, 2 ---七星彩 , 4---排列5
@@ -449,7 +452,7 @@ package com.snomyc.common.util;//package com.snomyc.util;
 //				grabWinResult.setName(obj.getString("level"));
 //				String piece = obj.getString("piece");
 //				String money = obj.getString("money");
-//				
+//
 //				if(StringUtils.isNotBlank(piece)) {
 //					piece = new BigDecimal(piece.replace(",", "")).setScale(0, BigDecimal.ROUND_DOWN).toString();
 //				}else {
@@ -500,11 +503,11 @@ package com.snomyc.common.util;//package com.snomyc.util;
 //		}
 //
 //	}
-//	
+//
 //
 //	/**
 //	 * 获取足球游戏开奖公告信息 体彩网对应游戏gameID 9 --- 14场胜负彩, 11-----4场进球, 10---6场半全场
-//	 * 
+//	 *
 //	 * @param gameID
 //	 * @param showIssue
 //	 * @return
@@ -621,7 +624,7 @@ package com.snomyc.common.util;//package com.snomyc.util;
 //
 //	/**
 //	 * 获取任九总销量
-//	 * 
+//	 *
 //	 * @param showIssue
 //	 * @return
 //	 * @throws Exception
@@ -660,9 +663,9 @@ package com.snomyc.common.util;//package com.snomyc.util;
 //			Document document = GrabHel.getDoc(url);
 //			//网页中表格tbody的tr对象
 //			Elements trs = document.select("tbody").select("tr");
-//			
+//
 //			if( null != trs) {
-//				
+//
 //				//获取查询结果第一行行数
 //				Element tr =trs.get(0);
 //				//获取单元格总列数
@@ -697,11 +700,11 @@ package com.snomyc.common.util;//package com.snomyc.util;
 //				}
 //			}
 //		}catch (Exception e) {
-//			
+//
 //		}
 //		return null;
 //	}
-//	
+//
 //	public static List<String> getGd11x5ShowIssue(String curShowIssue,String newestShowIssue){
 //		//日期
 //		String t1 = "20"+curShowIssue.substring(0, curShowIssue.length()-2);
@@ -720,7 +723,7 @@ package com.snomyc.common.util;//package com.snomyc.util;
 //			//计算所需天数
 //	        Long time1 = format.parse(t1).getTime();
 //	        Long time2 = format.parse(t2).getTime();
-//	        
+//
 //	        Long days = (time2 - time1 )/(24*3600*1000);
 //        	Long m = 24*3600*1000L;
 //	        //System.out.println(days);
@@ -741,7 +744,7 @@ package com.snomyc.common.util;//package com.snomyc.util;
 //		        	}
 //	        	}
 //	        }
-//	        
+//
 //	        //去掉头
 //			list.remove(0);
 //			//去掉尾
@@ -756,7 +759,7 @@ package com.snomyc.common.util;//package com.snomyc.util;
 //		}
 //		return null;
 //	}
-//	
+//
 //
 //	public static void main(String[] args) throws InterruptedException {
 ////		List<String> srtList = GameGrabLotteryUtil.getCompensateShowIssue(4, 17041, 17082);
