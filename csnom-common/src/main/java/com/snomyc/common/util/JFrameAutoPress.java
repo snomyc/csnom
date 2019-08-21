@@ -5,6 +5,8 @@ import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Random;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -38,6 +40,7 @@ public class JFrameAutoPress {
 			try {
 				while(true) {
 					Robot robot = new Robot();
+					//睡2s
 					//robot.delay(2000);
 					//随机按下1个键 VK_A=65 VK_Z=90  VK_0=48 VK_9=57 VK_ENTER=10
 					//生成65-90之间的随机数
@@ -74,8 +77,13 @@ public class JFrameAutoPress {
 				try {
 					JOptionPane.showMessageDialog(null, "您已经按下F1键，开启新线程开始运行!");
 					//开启一个线程专门自动按键
-					AutoPress autoPress = new AutoPress();
-					new Thread(autoPress).start();
+//					AutoPress autoPress = new AutoPress();
+//					new Thread(autoPress).start();
+
+					ExecutorService service = Executors.newFixedThreadPool(10);
+					for (int i = 0; i < 10; i++) {
+						service.execute(new AutoPress());
+					}
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
