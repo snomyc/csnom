@@ -154,7 +154,7 @@ public class CommonApiController {
 		ResponseEntity responseEntity = new ResponseEntity();
 		try {
 			long start = System.currentTimeMillis();
-			for (int i = 0; i < 1000000; i++) {
+			for (int i = 0; i < 100000; i++) {
 				RequestLog requestLog = new RequestLog();
 				requestLog.setId(UUID.randomUUID().toString());
 				requestLog.setUserId(UUID.randomUUID().toString());

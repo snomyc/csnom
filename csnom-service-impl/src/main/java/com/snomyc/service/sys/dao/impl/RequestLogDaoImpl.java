@@ -63,7 +63,11 @@ public class RequestLogDaoImpl implements RequestLogDao {
     @Override
     public void deleteAll() {
         //eq相等   ne、neq不相等，   gt大于， lt小于 gte、ge大于等于   lte、le 小于等于   not非   mod求模
-        Query query = new Query(Criteria.where("requestDate").lt(new Date()));
+//        Query query = new Query(Criteria.where("requestDate").lt(new Date()));
+//        mongoTemplate.remove(query,RequestLog.class);
+        Query query = new Query();
+        //mongoDB分页查询下标为1开始总共1000行数据
+        query.skip(100).limit(1000);
         mongoTemplate.remove(query,RequestLog.class);
     }
 }
