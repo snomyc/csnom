@@ -1,18 +1,18 @@
 package com.snomyc.api.common;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.snomyc.bean.LotterDraw;
 import com.snomyc.bean.User;
+import com.snomyc.bean.mongodb.RequestLog;
 import com.snomyc.common.base.domain.ResponseConstant;
 import com.snomyc.common.base.domain.ResponseEntity;
 import com.snomyc.common.util.face.FaceReq;
 import com.snomyc.service.inner.MQProduceService;
 import com.snomyc.service.mybatis.sys.SysMapperService;
 import com.snomyc.service.sys.LotterDrawService;
+import com.snomyc.service.sys.RequestLogService;
 import com.snomyc.service.sys.UserService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,6 +35,9 @@ public class CommonApiController {
 
 	@Reference(version = "1.0" ,timeout = 15000)
 	private SysMapperService sysMapperService;
+
+	@Reference(version = "1.0" ,timeout = 15000)
+	private RequestLogService requestLogService;
 
 	@ApiOperation(value = "识别图片信息",httpMethod = "POST")
 	@RequestMapping(value = "/discernPicture", method = RequestMethod.POST)
@@ -139,6 +142,78 @@ public class CommonApiController {
 		try {
 			List<User> userList = sysMapperService.findAllByTempUserId(userId);
 			responseEntity.success(userList,"成功");
+		} catch (Exception e) {
+			responseEntity.failure(ResponseConstant.CODE_500, "接口调用异常");
+		}
+		return responseEntity;
+	}
+
+	@ApiOperation(value = "测试mongodb插入10万条",httpMethod = "POST")
+	@RequestMapping(value = "/testLog", method = RequestMethod.POST)
+	public ResponseEntity testLog() {
+		ResponseEntity responseEntity = new ResponseEntity();
+		try {
+			long start = System.currentTimeMillis();
+			for (int i = 0; i < 1000000; i++) {
+				RequestLog requestLog = new RequestLog();
+				requestLog.setId(UUID.randomUUID().toString());
+				requestLog.setUserId(UUID.randomUUID().toString());
+				requestLog.setRequestDate(new Date());
+				requestLogService.saveRequestLog(requestLog);
+			}
+			long end =  System.currentTimeMillis();
+			responseEntity.success("总共耗时:"+(double)((end-start)/60000)+"min");
+		} catch (Exception e) {
+			responseEntity.failure(ResponseConstant.CODE_500, "接口调用异常");
+		}
+		return responseEntity;
+	}
+
+	@ApiOperation(value = "测试mongodb查询",httpMethod = "POST")
+	@RequestMapping(value = "/testLog2", method = RequestMethod.POST)
+	public ResponseEntity testLog2(@RequestParam(name = "userId",required = false) String userId) {
+		ResponseEntity responseEntity = new ResponseEntity();
+		try {
+			RequestLog requestLog = requestLogService.findByUserId(userId);
+			responseEntity.success(requestLog,"成功");
+		} catch (Exception e) {
+			responseEntity.failure(ResponseConstant.CODE_500, "接口调用异常");
+		}
+		return responseEntity;
+	}
+
+	@ApiOperation(value = "测试mongodb删除",httpMethod = "POST")
+	@RequestMapping(value = "/testLog3", method = RequestMethod.POST)
+	public ResponseEntity testLog3(@RequestParam(name = "id",required = false) String id) {
+		ResponseEntity responseEntity = new ResponseEntity();
+		try {
+			requestLogService.deleteById(id);
+			responseEntity.success("成功");
+		} catch (Exception e) {
+			responseEntity.failure(ResponseConstant.CODE_500, "接口调用异常");
+		}
+		return responseEntity;
+	}
+
+	@ApiOperation(value = "测试mongodb查询所有",httpMethod = "POST")
+	@RequestMapping(value = "/testLog4", method = RequestMethod.POST)
+	public ResponseEntity testLog4() {
+		ResponseEntity responseEntity = new ResponseEntity();
+		try {
+			responseEntity.success(requestLogService.findAll(),"成功");
+		} catch (Exception e) {
+			responseEntity.failure(ResponseConstant.CODE_500, "接口调用异常");
+		}
+		return responseEntity;
+	}
+
+	@ApiOperation(value = "测试mongodb删除所有",httpMethod = "POST")
+	@RequestMapping(value = "/testLog5", method = RequestMethod.POST)
+	public ResponseEntity testLog5() {
+		ResponseEntity responseEntity = new ResponseEntity();
+		try {
+			requestLogService.deleteAll();
+			responseEntity.success("成功");
 		} catch (Exception e) {
 			responseEntity.failure(ResponseConstant.CODE_500, "接口调用异常");
 		}

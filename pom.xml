@@ -63,6 +63,12 @@
             <version>0.1.1</version>
         </dependency>
 
+        <!--接入mongodb-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+        </dependency>
+
         <!--zookeeper 的客户端-->
         <dependency>
             <groupId>com.101tec</groupId>
@@ -193,12 +199,12 @@
         <!-- poi end -->
 
 
-        <!-- 热启动 -->
-        <dependency>
+        <!-- 热启动会导致mongodb java.lang.ClassCastException -->
+<!--        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
-        </dependency>
+        </dependency>-->
 
         <!-- 打包的时候排查tomcat -->
         <!--	    <dependency>

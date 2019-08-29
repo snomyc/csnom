@@ -52,6 +52,8 @@ public class Test2 {
 
       String apiUrl = "/api/common/lotteryDraw";
       boolean flag = !StringUtils.startsWith(apiUrl, "/api/");
-      System.out.print(flag);
+      System.out.println(flag);
+
+      System.out.println((double) 920552/(1000*60));
 	}
 }
