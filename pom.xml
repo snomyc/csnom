@@ -302,6 +302,7 @@
         <module>csnom-inner-service-impl</module>
         <module>csnom-mybatis-service</module>
         <module>csnom-mybatis-service-impl</module>
+        <module>csnom-elasticsearch</module>
     </modules>
 
     <!-- Package as an executable jar -->

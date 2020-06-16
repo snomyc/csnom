@@ -77,7 +77,7 @@ public class CommonApiController {
 		return responseEntity;
 	}
 
-	@ApiOperation(value = "返回抽奖结果名单",httpMethod = "POST")
+	@ApiOperation(value = "测试mq发送",httpMethod = "POST")
 	@RequestMapping(value = "/sendMQ", method = RequestMethod.POST)
 	public ResponseEntity sendMQ() {
 		ResponseEntity responseEntity = new ResponseEntity();
