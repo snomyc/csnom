@@ -1,13 +1,10 @@
-package com.ssj.es.service.base;
+package com.snomyc.es.service;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.ssj.es.entiy.EsResModel;
-import com.ssj.framework.core.security.manager.TokenManager;
-import com.ssj.framework.core.util.Constant;
-import com.ssj.framework.core.util.RedisUtil;
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.Header;
@@ -60,11 +57,6 @@ public class BaseSearchService {
 	
 	@Autowired
 	RestHighLevelClient restHighLevelClient;
-
-	@Autowired
-	TokenManager tokenManager;
-	@Autowired
-	private RedisUtil redisUtil;
 
 	public   EsResModel findEsIndexPage(String indexName, LinkedHashMap<String,Object> params) {
 		return findEsIndexPage( indexName, params, null,null,null);
@@ -175,7 +167,7 @@ public class BaseSearchService {
 				}
 			} while (openRetry && !result && retryCount <= MAX_RETRIES);
 		} catch (Exception e) {
-			dataMapList.forEach(dataMap -> redisUtil.lpush(Constant.ES_SAVE_ERROR_QUESTIONS, dataMap.getOrDefault("question_id", "").toString()));
+			//dataMapList.forEach(dataMap -> redisUtil.lpush(Constant.ES_SAVE_ERROR_QUESTIONS, dataMap.getOrDefault("question_id", "").toString()));
 			log.error("es批量插入数据异常", e);
 			log.error("indexName=[{}]", indexName);
 		}

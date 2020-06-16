@@ -1,11 +1,10 @@
-package com.ssj.es.service.base;
+package com.snomyc.es.service;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
+import com.snomyc.es.utils.ElasticUtil;
 import com.ssj.es.entiy.ElasticEntity;
-import com.ssj.es.utils.ElasticUtil;
-import com.ssj.framework.core.util.StringUtil;
-import com.ssj.framework.idworker.IdWorker;
+import org.apache.commons.lang3.StringUtils;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
 import org.elasticsearch.action.bulk.BulkRequest;
 import org.elasticsearch.action.delete.DeleteRequest;
@@ -198,9 +197,9 @@ public class BaseElasticService {
 
             Map<String, Object> map=  JSON.parseObject(JSON.toJSONString(list.get(i)), new TypeReference<Map<String, Object>>() {});
 
-         String id =IdWorker.generateId();
+         String id = UUID.randomUUID().toString();
          if(map.containsKey("id")){
-           id =  StringUtil.isNotBlank(map.get("id").toString()) ? map.get("id").toString():id;
+           id =  StringUtils.isNotBlank(map.get("id").toString()) ? map.get("id").toString():id;
          }
             IndexRequest indexRequest =  new IndexRequest(idxName).id(id);
             indexRequest.source(map);
