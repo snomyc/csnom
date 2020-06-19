@@ -8,14 +8,15 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <elasticsearch.version>7.7.1</elasticsearch.version>
-    </properties>
-
     <artifactId>csnom-elasticsearch</artifactId>
+    <name>csnom-elasticsearch</name>
     <description>csnom-elasticsearch</description>
     <packaging>jar</packaging>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!--<elasticsearch.version>7.7.1</elasticsearch.version>-->
+        <elasticsearch.version>7.2.0</elasticsearch.version>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>org.elasticsearch.client</groupId>
