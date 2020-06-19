@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.snomyc.bean.AmazonKeyWord;
 import com.snomyc.common.base.service.BaseServiceImpl;
 import com.snomyc.common.util.HttpClientHelper;
+import com.snomyc.es.service.BaseElasticService;
 import com.snomyc.service.sys.AmazonKeyWordService;
 import com.snomyc.service.sys.SysConfigService;
 import com.snomyc.service.sys.dao.AmazonKeyWordDao;
@@ -26,6 +27,9 @@ public class AmazonKeyWordServiceImpl extends BaseServiceImpl<AmazonKeyWord, Str
     
     @Autowired
     private SysConfigService sysConfigService;
+
+    @Autowired
+    private BaseElasticService baseElasticService;
 
 	@Override
 	public PagingAndSortingRepository<AmazonKeyWord, String> getDao() {
@@ -96,6 +100,16 @@ public class AmazonKeyWordServiceImpl extends BaseServiceImpl<AmazonKeyWord, Str
 		amazonKeyWordDao.delete(list);
 		this.saveListByKeyWordRoot(keyWordRoot);
 	}
+
+    @Override
+    public void saveToEs() {
+        try {
+            List<AmazonKeyWord> list = this.findAll();
+            baseElasticService.insertBatchES("amazon_key_word",list);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
 
 

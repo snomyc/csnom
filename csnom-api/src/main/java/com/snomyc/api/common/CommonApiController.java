@@ -11,6 +11,7 @@ import com.snomyc.common.base.domain.ResponseEntity;
 import com.snomyc.common.util.face.FaceReq;
 import com.snomyc.service.inner.MQProduceService;
 import com.snomyc.service.mybatis.sys.SysMapperService;
+import com.snomyc.service.sys.AmazonKeyWordService;
 import com.snomyc.service.sys.LotterDrawService;
 import com.snomyc.service.sys.RequestLogService;
 import com.snomyc.service.sys.UserService;
@@ -38,6 +39,9 @@ public class CommonApiController {
 
 	@Reference(version = "1.0" ,timeout = 15000)
 	private RequestLogService requestLogService;
+
+    @Reference(version = "1.0" ,timeout = 15000)
+    private AmazonKeyWordService amazonKeyWordService;
 
 	@ApiOperation(value = "识别图片信息",httpMethod = "POST")
 	@RequestMapping(value = "/discernPicture", method = RequestMethod.POST)
@@ -219,4 +223,17 @@ public class CommonApiController {
 		}
 		return responseEntity;
 	}
+
+    @ApiOperation(value = "测试插入数据到es",httpMethod = "POST")
+    @RequestMapping(value = "/testSaveToEs", method = RequestMethod.POST)
+    public ResponseEntity testSaveToEs() {
+        ResponseEntity responseEntity = new ResponseEntity();
+        try {
+            amazonKeyWordService.saveToEs();
+            responseEntity.success("成功");
+        } catch (Exception e) {
+            responseEntity.failure(ResponseConstant.CODE_500, "接口调用异常");
+        }
+        return responseEntity;
+    }
 }

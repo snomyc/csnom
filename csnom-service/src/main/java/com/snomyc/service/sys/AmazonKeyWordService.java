@@ -33,4 +33,7 @@ public interface AmazonKeyWordService extends BaseService<AmazonKeyWord, String>
 	public List<AmazonKeyWord> findListByKeyWordRoot(String keyWordRoot);
 	
 	public void updateKeyWord(String keyWordRoot);
+
+
+	public void saveToEs();
 }
