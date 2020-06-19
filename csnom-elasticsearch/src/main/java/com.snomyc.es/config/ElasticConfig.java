@@ -1,4 +1,4 @@
-package com.ssj.es.config;
+package com.snomyc.es.config;
 
 
 import org.apache.http.Header;

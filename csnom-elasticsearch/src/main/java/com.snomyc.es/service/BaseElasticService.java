@@ -480,7 +480,7 @@ public class BaseElasticService {
         sourceBuilder.query(builder.query());
         
         CountRequest countRequest = new CountRequest(idxName);
-    	countRequest.source(sourceBuilder);
+        countRequest.source(sourceBuilder);
         try {
         	 CountResponse countResponse = restHighLevelClient.count(countRequest, RequestOptions.DEFAULT);
         	 return countResponse.getCount();
@@ -488,7 +488,7 @@ public class BaseElasticService {
             throw new RuntimeException(e);
         }    
     }
-    
+
 
     /** 删除index
      * @See

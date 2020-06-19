@@ -29,6 +29,7 @@
         <httpclient.version>4.5.2</httpclient.version>
         <fastjson.version>1.2.8</fastjson.version>
         <com.baidu.aip.version>3.2.0</com.baidu.aip.version>
+        <elasticsearch.version>7.7.1</elasticsearch.version>
     </properties>
 
     <dependencies>
