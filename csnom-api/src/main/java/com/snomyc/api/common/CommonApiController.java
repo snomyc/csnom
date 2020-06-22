@@ -3,6 +3,7 @@ package com.snomyc.api.common;
 import java.util.*;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.snomyc.bean.AmazonKeyWord;
 import com.snomyc.bean.LotterDraw;
 import com.snomyc.bean.User;
 import com.snomyc.bean.mongodb.RequestLog;
@@ -14,7 +15,8 @@ import com.snomyc.service.mybatis.sys.SysMapperService;
 import com.snomyc.service.sys.AmazonKeyWordService;
 import com.snomyc.service.sys.LotterDrawService;
 import com.snomyc.service.sys.RequestLogService;
-import com.snomyc.service.sys.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,6 +29,7 @@ import io.swagger.annotations.ApiParam;
 @RestController
 @RequestMapping("/api/common")
 public class CommonApiController {
+    private Logger logger = LoggerFactory.getLogger("ELKLog");
 	
 	@Reference(version = "1.0" ,timeout = 15000)
 	private LotterDrawService lotterDrawService;
@@ -231,6 +234,19 @@ public class CommonApiController {
         try {
             amazonKeyWordService.saveToEs();
             responseEntity.success("成功");
+        } catch (Exception e) {
+            responseEntity.failure(ResponseConstant.CODE_500, "接口调用异常");
+        }
+        return responseEntity;
+    }
+
+    @ApiOperation(value = "测试添加日志到elk",httpMethod = "POST")
+    @RequestMapping(value = "/testAddELKLog", method = RequestMethod.POST)
+    public ResponseEntity testAddELKLog() {
+        ResponseEntity responseEntity = new ResponseEntity();
+        try {
+            List<AmazonKeyWord> list = amazonKeyWordService.findByKeyWordRoot("1111");
+            responseEntity.success(list,"成功");
         } catch (Exception e) {
             responseEntity.failure(ResponseConstant.CODE_500, "接口调用异常");
         }

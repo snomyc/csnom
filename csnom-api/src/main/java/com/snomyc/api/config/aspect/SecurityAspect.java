@@ -30,7 +30,7 @@ public class SecurityAspect {
     private String tokenName = "accessToken";
 
     //通知包裹了被通知的方法，在被通知的方法调用之前和调用之后执行自定义的行为
-    @Around("execution(* com.snomyc.api..*.*(..))") //拦截com.snomyc包及子包下面的所有类中的所有方法，返回类型任意，方法参数任意
+    @Around("execution(* com.snomyc.api.common.*.*(..))") //拦截com.snomyc包及子包下面的所有类中的所有方法，返回类型任意，方法参数任意
     public Object around(ProceedingJoinPoint pjp) throws Throwable{
     	// 从切点上获取目标方法
         MethodSignature methodSignature = (MethodSignature) pjp.getSignature();
