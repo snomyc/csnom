@@ -3,20 +3,25 @@ package com.snomyc.api.common;
 import java.util.*;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.alibaba.fastjson.JSON;
 import com.snomyc.bean.AmazonKeyWord;
 import com.snomyc.bean.LotterDraw;
 import com.snomyc.bean.User;
 import com.snomyc.bean.mongodb.RequestLog;
 import com.snomyc.common.base.domain.ResponseConstant;
 import com.snomyc.common.base.domain.ResponseEntity;
+import com.snomyc.common.util.DateFormatHelper;
+import com.snomyc.common.util.HttpHelper;
 import com.snomyc.common.util.face.FaceReq;
 import com.snomyc.service.inner.MQProduceService;
 import com.snomyc.service.mybatis.sys.SysMapperService;
 import com.snomyc.service.sys.AmazonKeyWordService;
 import com.snomyc.service.sys.LotterDrawService;
 import com.snomyc.service.sys.RequestLogService;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -242,10 +247,32 @@ public class CommonApiController {
 
     @ApiOperation(value = "测试添加日志到elk",httpMethod = "POST")
     @RequestMapping(value = "/testAddELKLog", method = RequestMethod.POST)
-    public ResponseEntity testAddELKLog() {
+    public ResponseEntity testAddELKLog(@RequestParam(name = "keyWordRoot",required = false) String keyWordRoot) {
         ResponseEntity responseEntity = new ResponseEntity();
         try {
-            List<AmazonKeyWord> list = amazonKeyWordService.findByKeyWordRoot("1111");
+            List<AmazonKeyWord> list = amazonKeyWordService.findByKeyWordRoot(keyWordRoot);
+            for (AmazonKeyWord amazonKeyWord:list) {
+                //获取请求api的设备信息
+                MDC.clear();
+                MDC.put("id",amazonKeyWord.getId());
+                MDC.put("keyWordRoot",amazonKeyWord.getKeyWordRoot());
+                MDC.put("keyWordSecond",amazonKeyWord.getKeyWordSecond());
+                MDC.put("createTime", DateFormatHelper.parseDate(amazonKeyWord.getCreateTime(),DateFormatHelper.YYYY_MM_DD_HH_MM_SS));
+                logger.error(MDC.getCopyOfContextMap().toString());
+            }
+            responseEntity.success(list,"成功");
+        } catch (Exception e) {
+            responseEntity.failure(ResponseConstant.CODE_500, "接口调用异常");
+        }
+        return responseEntity;
+    }
+
+    @ApiOperation(value = "测试超时时间",httpMethod = "POST")
+    @RequestMapping(value = "/testMaxtime", method = RequestMethod.POST)
+    public ResponseEntity testMaxtime() {
+        ResponseEntity responseEntity = new ResponseEntity();
+        try {
+            List<AmazonKeyWord> list = amazonKeyWordService.findAll();
             responseEntity.success(list,"成功");
         } catch (Exception e) {
             responseEntity.failure(ResponseConstant.CODE_500, "接口调用异常");

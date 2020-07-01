@@ -115,6 +115,34 @@
         </encoder>
     </appender>
 
+    <appender name="elklogstash"
+              class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+
+        <destination>192.168.2.173:9251</destination>
+        <queueSize>1048576</queueSize>
+        <encoder charset="UTF-8"
+                 class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <timestamp>
+                    <timeZone>UTC</timeZone>
+                </timestamp>
+                <pattern>
+                    <pattern>
+                        {
+                        <!--日志级别 -->
+                        "level": "%level",
+                        <!--应用名称 -->
+                        "id" :"%mdc{id}",
+                        "keyWordRoot" :"%mdc{keyWordRoot}",
+                        "keyWordSecond" :"%mdc{keyWordSecond}",
+                        "createTime" :"%mdc{createTime}"
+                        }
+                    </pattern>
+                </pattern>
+            </providers>
+        </encoder>
+    </appender>
+
 
     <root level="info">
         <appender-ref ref="console"/>
@@ -129,5 +157,9 @@
 
     <logger name="com.snomyc.common.base.aspect.RequestApiLogInterceptor" level="INFO" additivity="false">
         <appender-ref ref="LOGSTASH"/>
+    </logger>
+
+    <logger name="ELKLog" level="error" additivity="false">
+        <appender-ref ref="elklogstash"/>
     </logger>
 </configuration>

@@ -59,6 +59,90 @@
         </encoder>
     </appender>
 
+    <!-- 记录String
+        <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+            <destination>192.168.2.173:9250</destination>
+            <queueSize>1048576</queueSize>
+            <encoder charset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder" />
+        </appender>-->
+
+    <!-- 记录带实体的日志到es-->
+    <appender name="LOGSTASH"
+              class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+
+        <destination>120.77.151.81:9600</destination>
+        <queueSize>1048576</queueSize>
+        <encoder charset="UTF-8"
+                 class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <timestamp>
+                    <timeZone>UTC</timeZone>
+                </timestamp>
+                <pattern>
+                    <pattern>
+                        {
+                        <!--日志级别 -->
+                        "level": "%level",
+                        <!--应用名称 -->
+                        "appName": "${spring.application.name:-}",
+                        <!--线程名称 -->
+                        "thread": "%thread",
+                        "class": "%logger{40}",
+                        <!--日志信息 -->
+                        "message": "%message" ,
+                        <!--打印时间 -->
+                        "timestamp":"%date{ISO8601}",
+                        <!--日志堆栈 -->
+                        "stack_trace": "%exception",
+
+                        "Phoneimei" :"%mdc{phoneimei}",
+                        "phonesys" :"%mdc{phonesys}",
+                        "phonetype" :"%mdc{phonetype}",
+                        "version" :"%mdc{version}",
+                        "platform" :"%mdc{platform}",
+                        "build" :"%mdc{build}",
+                        "apiUrl" :"%mdc{apiUrl}",
+                        "methodName" :"%mdc{methodName}",
+                        "accessToken" :"%mdc{accessToken}",
+                        "userId" :"%mdc{userId}",
+                        "requestMap" :"%mdc{requestMap}",
+                        "apiName" :"%mdc{apiName}",
+                        "postBody" :"%mdc{postBody}"
+                        }
+                    </pattern>
+                </pattern>
+            </providers>
+        </encoder>
+    </appender>
+
+    <appender name="elklogstash"
+              class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+
+        <destination>120.77.151.81:9600</destination>
+        <queueSize>1048576</queueSize>
+        <encoder charset="UTF-8"
+                 class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <timestamp>
+                    <timeZone>UTC</timeZone>
+                </timestamp>
+                <pattern>
+                    <pattern>
+                        {
+                        <!--日志级别 -->
+                        "level": "%level",
+                        <!--应用名称 -->
+                        "id" :"%mdc{id}",
+                        "keyWordRoot" :"%mdc{keyWordRoot}",
+                        "keyWordSecond" :"%mdc{keyWordSecond}",
+                        "createTime" :"%mdc{createTime}"
+                        }
+                    </pattern>
+                </pattern>
+            </providers>
+        </encoder>
+    </appender>
+
 
     <root level="info">
         <appender-ref ref="console"/>
@@ -69,5 +153,13 @@
     </logger>
     <logger name="AmazonRabbitmq" level="error">
         <appender-ref ref="amazonmq"/>
+    </logger>
+
+    <logger name="com.snomyc.common.base.aspect.RequestApiLogInterceptor" level="INFO" additivity="false">
+        <appender-ref ref="LOGSTASH"/>
+    </logger>
+
+    <logger name="ELKLog" level="error" additivity="false">
+        <appender-ref ref="elklogstash"/>
     </logger>
 </configuration>
