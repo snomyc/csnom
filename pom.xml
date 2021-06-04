@@ -26,7 +26,7 @@
         <commons-io.version>2.4</commons-io.version>
         <commons-codec.version>1.10</commons-codec.version>
         <commons-collections.version>4.1</commons-collections.version>
-        <httpclient.version>4.5.2</httpclient.version>
+        <httpclient.version>4.5.13</httpclient.version>
         <fastjson.version>1.2.8</fastjson.version>
         <com.baidu.aip.version>3.2.0</com.baidu.aip.version>
     </properties>
